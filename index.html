@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+
+
     <!-- 다운로드 받은 echarts.js 파일 로드-->
-    <script src="echarts.min.js"></script>  
+    <script src="./echarts.min.js"></script>  
     <script type="text/javascript">
 
-        let xAxisData = ['10:00','10:05','10:10','10:15','10:20','10:25','10:30','10:35','10:40','10:45']; // x축 데이터 배열 생성
-        let seriesData = [25,30,35,40,45,42,40,38,37,34]; // 값 데이터 배열 생성
+        let xAxisData = ['철수','영희','민수','지수']; // x축 데이터 배열 생성
+        let seriesData = [70,80,100,30]; // 값 데이터 배열 생성
 
         window.onload = function() { // 페이지 로드 시 실행
 
@@ -24,33 +27,95 @@
 		var myChart = echarts.init(document.getElementById('chart')); // echarts init 메소드로 id=chart인 DIV에 차트 초기화
 		
 		option = { // 차트를 그리는데 활용 할 다양한 옵션 정의
+
+                    grid:{
+                        bottom:60,
+                        containLabel:true
+                    },
+
+                    legend:{
+                        show:true,
+                        orient:'vertical',
+                  
+                        top:20,
+                        data:[{
+                            name:'temperature'
+                        }]
+                    },
+    
+                    tooltip:{
+                        trigger:'axis',
+                        axisPointer: {type:'cross'}
+                    },
                     xAxis: {
                         type: 'category',
-                        data: xAxisData // 위에서 정의한 X축 데이터
+                        data: xAxisData, // 위에서 정의한 X축 데이터
+                        axisLabel:{
+                            rotate:90
+                        }
                     },
                     yAxis: {
-                        type: 'value'
+                        type: 'value',
+                        axisLabel:{
+                            formatter:'{value}°C'
+                        }
                     },
                     series: [
                         {
                         data: seriesData, // 위에서 정의한 값 데이터
-                        type: this.value // 버튼의 value 데이터 ('line' or 'bar')
+                        type: this.value, // 버튼의 value 데이터 ('line' or 'bar')
+                        name: 'temperature'
                         }
                     ]
-                        };
+                 };
         
 		myChart.setOption(option); // 차트 디스플레이
 	}
     </script>
 </head>
 <body>
+    <header id="header" class="header">
+        <h1><a href="" class="btn-logo">IoT Platform</a></h1>
+        <nav>
+            <ul class="gnb">
+               
+                <li> <input type="text" name="name"></li>
+                <li><a href="">Device</a></li>
+                <li><a href="" class="btn-manage">Manage</a></li>
+            
+            </ul>
+        </nav>
+        <a href="" class="btn-support">Support</a>
+    </header>
+    <main>
+        <div class="information">
+            <div class="deviceID"> S/N：Raku001</div>
+            <div>Lastest Updates: 2024.01.26 10:40 </div>
+            <div>Battery: 95%</div>
+    
+        </div>
+        <div class="selection">
+            <div>Dashboard</div>
+            <div class="settings">Settings</div>
+        </div>
+    
+        <div class="visual__copy"></div>
+        
+        <img src="images/header.png" alt="" class="bg-img1">
+        <img src="images/dashboard.png" alt="" class="bg-img2">
 
-	<inclde src="https://rakuten-test-ue.s3.us-east-2.amazonaws.com/index.html"></inclde>
-    <button id="drawLine" value="line">Line Chart</button>
+
+
+    </main>
+
+
+    <button class="btn-dashboard" id="drawLine" value="line">Update chart</button>
     <button id="drawBar" value="bar">Bar Chart</button>
 
     <!-- 차트를 그려줄 영역 -->
-    <div id="chart" style="width: 100%; height:500px;"> 
-   
+    <div class="dashboard" id="chart" style="width: 100%; height:600px;">
+
+
+
 </body>
 </html>
