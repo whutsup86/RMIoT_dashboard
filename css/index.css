@@ -22,7 +22,7 @@ body{
     position:absolute;
     left: 50px;
     right: 50px;
-    top:7px;
+    top:0px;
     z-index : 100;
     font-family:Helvetica;
     color:var(--white);
